@@ -1,6 +1,6 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
-  entry: './public/js/index',
+  entry: ['./public/js/entry'],
   output: {
     path: '/Users/rob/code/rewordy.com/public/js',
     filename: 'bundle.js',

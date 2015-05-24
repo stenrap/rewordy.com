@@ -1,1 +1,1 @@
-webpackJsonp([1],{81:function(e,t,n){document.write("Inside about...")}});
+webpackJsonp([1],{6:function(e,t,n){var o=n(5);e.exports=o.createClass({displayName:"About",handleClick:function(){console.log("Going home..."),o.unmountComponentAtNode(document.getElementById("content"));var e=n(2);o.render(o.createElement(e,null),document.getElementById("content"))},render:function(){return o.createElement("div",null,"About",o.createElement("br",null),o.createElement("button",{onClick:this.handleClick},"Home"))}})}});

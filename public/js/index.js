@@ -1,26 +1,28 @@
-require('../css/style');
 var React = require('react');
 
-var IntroText = React.createClass({
+module.exports = React.createClass({
+
+  displayName: 'Index',
 
   handleClick: function() {
     require.ensure(['./about'], function(require) {
-      console.log('Did a file load happen?!');
+      console.log('Going to about...');
+      React.unmountComponentAtNode(document.getElementById('content'));
+      var About = require('./about');
+      React.render(
+        <About />,
+        document.getElementById('content')
+      );
     });
   },
 
   render: function() {
     return (
       <div>
-        Hello, World!<br></br>
+        Home<br></br>
         <button onClick={this.handleClick}>About</button>
       </div>
     );
   }
 
 });
-
-React.render(
-  <IntroText />,
-  document.getElementById('content')
-);
