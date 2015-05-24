@@ -6,7 +6,13 @@ html(lang='en')
     meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
     meta(name='description' content='A web app that helps you reword sentences by suggesting synonyms as quickly as you can type. Be prepared to sound smarter.')
     title Rewordy
-    <!-- WYLO .... Normally you'd link bootstrap.min.css here, but you should read more about webpack... -->
+    link(rel='stylesheet' href='/css/bootstrap.min.css')
+    link(rel='stylesheet' href='/css/bundle.min.css')
+    <!--[if lt IE 9]>
+    script(src='/js/lib/html5shiv.min.js')
+    script(src='/js/lib/respond.min.js')
+    <![endif]-->
   body
-    block content
+    .container-fluid
+      #content
       block scripts
