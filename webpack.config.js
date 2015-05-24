@@ -1,9 +1,10 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
-  entry: './public/js/index.js',
+  entry: './public/js/index',
   output: {
     path: '/Users/rob/code/rewordy.com/public/js',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/js/'
   },
   module: {
     loaders: [
@@ -16,6 +17,9 @@ module.exports = {
         loader: 'jsx-loader'
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.less']
   },
   plugins: [
     new ExtractTextPlugin("../css/bundle.min.css")
