@@ -25,8 +25,12 @@ router.get('/find/:word',  function(req, res, next) {
                 if (object && object.entry_list && object.entry_list.entry && object.entry_list.entry.length) {
                     for (var i = 0; i < object.entry_list.entry.length; i++) {
                         var entry = object.entry_list.entry[i];
-                        if (entry && entry.sens && entry.sens[0] && entry.sens[0].syn && entry.sens[0].syn[0] && entry.sens[0].syn[0]._) {
-                            rawSynonyms = rawSynonyms.concat(entry.sens[0].syn[0]._.split(', '));
+                        if (entry && entry.sens && entry.sens[0] && entry.sens[0].syn && entry.sens[0].syn[0]) {
+                            if (entry.sens[0].syn[0]._) {
+                                rawSynonyms = rawSynonyms.concat(entry.sens[0].syn[0]._.split(', '));
+                            } else {
+                                rawSynonyms = rawSynonyms.concat(entry.sens[0].syn[0].split(', '));
+                            }
                         }
                     }
                 }
