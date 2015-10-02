@@ -10,7 +10,7 @@ module.exports = {
     loaders: [
       {
         test: /\.less$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader")
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
       },
       {
         test: /.js$/,
@@ -22,6 +22,6 @@ module.exports = {
     extensions: ['', '.js', '.less']
   },
   plugins: [
-    new ExtractTextPlugin("../css/bundle.min.css")
+    new ExtractTextPlugin('../css/bundle.min.css')
   ]
 };

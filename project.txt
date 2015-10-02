@@ -1,0 +1,14 @@
+
+================================
+    Merriam-Webster API Keys
+================================
+
+Thesaurus:  452859c8-b965-4a3a-a5bc-931cbb2a66d7
+
+Example URL (the word "think"):
+
+http://www.dictionaryapi.com/api/v1/references/thesaurus/xml/think?key=452859c8-b965-4a3a-a5bc-931cbb2a66d7
+
+When the word is invalid, the XML response is:
+
+<entry_list version="1.0"></entry_list>

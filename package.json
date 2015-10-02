@@ -20,7 +20,8 @@
     "morgan": "~1.5.3",
     "react": "^0.13.3",
     "serve-favicon": "~2.2.1",
-    "style-loader": "^0.12.2"
+    "style-loader": "^0.12.2",
+    "xml2js": "^0.4.12"
   },
   "devDependencies": {
     "node-libs-browser": "^0.5.2",
