@@ -10,6 +10,7 @@ router.get('/', function(req, res, next) {
 router.get('/find/:word',  function(req, res, next) {
     var xml = '';
     var rawSynonyms = [];
+    var rawRelated = [];
     var result = {synonyms: []};
     var options = {
         host: 'www.dictionaryapi.com',
@@ -25,6 +26,7 @@ router.get('/find/:word',  function(req, res, next) {
                 if (object && object.entry_list && object.entry_list.entry && object.entry_list.entry.length) {
                     for (var i = 0; i < object.entry_list.entry.length; i++) {
                         var entry = object.entry_list.entry[i];
+                        // Get the synonyms
                         if (entry && entry.sens && entry.sens[0] && entry.sens[0].syn && entry.sens[0].syn[0]) {
                             if (entry.sens[0].syn[0]._) {
                                 rawSynonyms = rawSynonyms.concat(entry.sens[0].syn[0]._.split(', '));
@@ -32,21 +34,31 @@ router.get('/find/:word',  function(req, res, next) {
                                 rawSynonyms = rawSynonyms.concat(entry.sens[0].syn[0].split(', '));
                             }
                         }
+                        // Get the related words
+                        if (entry && entry.sens && entry.sens[0] && entry.sens[0].rel && entry.sens[0].rel[0]) {
+                            if (entry.sens[0].rel[0]._) {
+                                rawSynonyms = rawSynonyms.concat(entry.sens[0].rel[0]._.split(/[,;]\s/));
+                            } else {
+                                rawSynonyms = rawSynonyms.concat(entry.sens[0].rel[0].split(/[,;]\s/));
+                            }
+                        }
                     }
                 }
             });
-            rawSynonyms.sort();
+            var previous = null;
             for (var i = 0; i < rawSynonyms.length; i++) {
                 var splitSynonyms = rawSynonyms[i].split(' []'); // Remove synonyms that end with ' []'.
-                var candidate = splitSynonyms[0];
+                var candidate = splitSynonyms[0].toLowerCase();
                 var regex = new RegExp(req.params.word); // TODO .... What about words that contain an apostrophe or other special characters?
                 if (!regex.test(candidate)) { // Remove synonyms that contain the original word.
-                    if (i > 0 && candidate === result.synonyms[i - 1]) { // Remove duplicates.
+                    if (candidate === previous) { // Remove duplicates.
                         continue;
                     }
+                    previous = candidate;
                     result.synonyms.push(candidate);
                 }
             }
+            result.synonyms.sort();
             console.log(result.synonyms);
             return res.send(result);
         });
