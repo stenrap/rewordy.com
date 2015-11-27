@@ -35,7 +35,7 @@ router.get('/find/:word',  function(req, res, next) {
                             }
                         }
                         // Get the related words
-                        if (entry && entry.sens && entry.sens[0] && entry.sens[0].rel && entry.sens[0].rel[0]) {
+                        if (rawSynonyms.length < 5 && entry && entry.sens && entry.sens[0] && entry.sens[0].rel && entry.sens[0].rel[0]) {
                             if (entry.sens[0].rel[0]._) {
                                 rawSynonyms = rawSynonyms.concat(entry.sens[0].rel[0]._.split(/[,;]\s/));
                             } else {
@@ -44,6 +44,11 @@ router.get('/find/:word',  function(req, res, next) {
                         }
                     }
                 }
+            });
+            rawSynonyms.sort(function(a, b) {
+                if (a.toLowerCase() < b.toLowerCase()) return -1;
+                if (a.toLowerCase() > b.toLowerCase()) return 1;
+                return 0;
             });
             var previous = null;
             for (var i = 0; i < rawSynonyms.length; i++) {
@@ -58,7 +63,6 @@ router.get('/find/:word',  function(req, res, next) {
                     result.synonyms.push(candidate);
                 }
             }
-            result.synonyms.sort();
             console.log(result.synonyms);
             return res.send(result);
         });

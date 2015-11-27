@@ -7,9 +7,10 @@ html(lang='en')
         meta(name='description' content='A web app that helps you reword sentences by suggesting synonyms as quickly as you can type. Be prepared to sound smarter.')
         title Rewordy
         style.
-            body{font-family:Helvetica,Arial,sans-serif;margin:0 auto;width:75%}#content{margin:0 auto}#what{font-size:1.25em;margin-top:90px}#words{-moz-appearance:none;border:1px solid #ccc;box-sizing:border-box;display:block;font-family:Arial,sans-serif;font-size:1em;margin:0 auto;outline:none;padding:12px;width:100%}::-webkit-input-placeholder{color:#bfbfbf}::-moz-placeholder{color:#888888}:-ms-input-placeholder{color:#bfbfbf}
+            body{font-family:Helvetica,Arial,sans-serif;margin:0 auto;width:75%}#content{margin:0 auto}#what{font-size:1.25em;margin-top:90px}#words{-moz-appearance:none;border:1px solid #ccc;box-sizing:border-box;display:block;font-family:Arial,sans-serif;font-size:1em;margin:0 auto;outline:none;padding:12px;width:100%}::-webkit-input-placeholder{color:#bfbfbf}::-moz-placeholder{color:#888888}:-ms-input-placeholder{color:#bfbfbf}#selects{margin-top:10px}.choice{display:inline-block;padding:10px;padding-left:0}
     body
         #content
             h3(id='what') What do you need to say?
             input(type='text' id='words' autofocus)
+            div(id='selects')
         script(src='/js/rewordy.js')
